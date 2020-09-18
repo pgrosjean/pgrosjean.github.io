@@ -4,11 +4,13 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 <style>
 body {
-	background-color: #474b4f;
-	color: #f7f7f7;
-	font-family: 'Montserrat';font-size: 42px;
-	text-align: center;
+	margin: 0;
+	height: 100vh;
 }
+canvas {
+	display: block;
+}
+
 h1 {
 	background-color: #283428;
 	color: #61892f;
@@ -19,7 +21,43 @@ h1 {
 </style>
 </head>
 	<body>
-		<h1> Parker Grosjean </h1>
-				<p> Welcome to my personal website. More to come soon... </p>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.js"></script>
+
+		<script>
+		// creating scene
+				var scene = new THREE.Scene();
+				var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1,	1000);
+				camera.position.z = 5;
+
+				var renderer = new THREE.WebGLRenderer({antialias: true});
+				renderer.setClearColor("#283428");
+				renderer.setSize(window.innerWidth,window.innerHeight);
+				document.body.appendChild(renderer.domElement);
+
+				// creating event listerner for window resizing
+				window.addEventListener('resize', () => {
+					rendrer.setSize(window.innerWidth, window.innerHeight):
+					camera.aspect = window.innerWidth / window.innerHeight;
+					camera.updateProjectionMatrix();
+				})
+
+				// generating new mesh object
+				var geometry = new THREE.SphereGeometry(1, 10, 10);
+				var material = new THREE.MeshLambertMaterial({color: 0xFFCC00});
+				var mesh = new THREE.Mesh(geometry, material);
+
+				// adding mesh to scene
+				scene.add(mesh);
+
+				// adding lights
+				var light = new THREE.PointLight(#FFFFFF, 1, 500)
+				light.position.set(10, 0, 25)
+				scene.add(light)
+
+				// rendering the scene
+				renderer.render(scene, camera);
+
+		</script>
+				<h1> Parker Grosjean </h1>
 		</body>
 </html>
