@@ -44,13 +44,22 @@ canvas {
 				var mouse = new THREE.Vector2();
 
 				// generating new mesh object
-				var geometry = new THREE.BoxGeometry(10, 10, 10);
+				var geometry = new THREE.BoxGeometry(3, 3, 3);
 				var material = new THREE.MeshLambertMaterial({color: 0xFFCC00, size: 0.25});
-				var mesh = new THREE.Mesh(geometry, material);
+				// var mesh = new THREE.Mesh(geometry, material);
 
+				// // adding mesh to scene
+				// scene.add(mesh);
 
-				// adding mesh to scene
-				scene.add(mesh);
+				meshX = -10;
+				for(var i = 0; i < 15; i++){
+					var mesh = new THREE.Mesh(geometry, material);
+					mesh.position.x = (Math.random() -0.5*) * 2;
+					mesh.position.x = (Math.random() -0.5*) * 2;
+					mesh.position.x = (Math.random() -0.5*) * 2;
+					scene.add(mesh);
+					meshX += 1;
+				}
 
 				// adding lights
 				var light = new THREE.PointLight( 0xFFFFFF, 1, 500);
@@ -84,7 +93,7 @@ canvas {
 						this.t1.to(intersects[i].object.scale, 0.5, {x: .5, ease: Expo.easeOut})
 						this.t1.to(intersects[i].object.position, 0.5, {x: 1, ease: Expo.easeOut})
 						this.t1.to(intersects[i].object.rotation, 0.5, {x: Math.PI*0.5, ease: Expo.easeOut}, "=-1.5")
-						this.t1.to(intersects[i].object.color, 1, {color: 0xff00ff, ease: Expo.easeOut})
+						this.t1.to(intersects[i].object.color, 0.5, {color: 0xff00ff, ease: Expo.easeOut})
 					}
 				}
 
