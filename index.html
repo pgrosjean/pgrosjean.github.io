@@ -10,14 +10,13 @@ body {
 canvas {
 	display: block;
 }
-
-h1 {
+/* h1 {
 	background-color: #283428;
 	color: #61892f;
 	text-align: center;
 	border: 2px #659DBD; border-radius: 5px;
 	margin: 50px;
-}
+} */
 </style>
 </head>
 	<body>
@@ -36,7 +35,7 @@ h1 {
 
 				// creating event listerner for window resizing
 				window.addEventListener('resize', () => {
-					rendrer.setSize(window.innerWidth, window.innerHeight):
+					rendrer.setSize(window.innerWidth, window.innerHeight);
 					camera.aspect = window.innerWidth / window.innerHeight;
 					camera.updateProjectionMatrix();
 				})
@@ -50,9 +49,9 @@ h1 {
 				scene.add(mesh);
 
 				// adding lights
-				var light = new THREE.PointLight(#FFFFFF, 1, 500)
-				light.position.set(10, 0, 25)
-				scene.add(light)
+				var light = new THREE.PointLight( 0xFFFFFF, 1, 500);
+				light.position.set(10, 0, 25);
+				scene.add(light);
 
 				// rendering the scene
 				renderer.render(scene, camera);
