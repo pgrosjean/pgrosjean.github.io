@@ -72,12 +72,12 @@ canvas {
 					event.preventDefault();
 					
 					mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-					mouse.y = (event.clientY / window.innerHeight) * 2 + 1;
+					mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
 
 					raycaster.setFromCamera(mouse, camera);
 
 					var intersects = raycaster.intersectObjects(scene.children, true)
-					
+
 					for (var i = 0; i < intersects.length; i++) {
 						this.tl = new TimelineMax();
 						this.tl.to(intersects[i].object.scale, 1, {x: 2, ease: Expo.easeOut})
