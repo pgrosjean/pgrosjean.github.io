@@ -83,10 +83,7 @@ h1 {
 
 					for (var i = 0; i < intersects.length; i++) {
 						this.tl = new TimelineMax();
-						this.tl.to(intersects[i].object.scale, 1, {x: 2, y: 2, z: 2, ease: Expo.easeOut});
-						this.t1.to(intersects[i].object.scale, 0.5, {z: .5, ease: Expo.easeOut});
-						this.t1.to(intersects[i].object.position, 0.5, {y: 1, ease: Expo.easeOut});
-						this.t1.to(intersects[i].object.rotation, 0.5, {x: Math.PI*0.5, ease: Expo.easeOut}, "=-1.5");
+						this.tl.to(intersects[i].object.scale, 1, {x: 1.5, y: 1.5, z: 1.5, ease: Expo.easeOut});
 					}
 				}
 
