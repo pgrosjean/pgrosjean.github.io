@@ -21,7 +21,7 @@ canvas {
 </head>
 	<body>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.js"></script>
-
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
 		<script>
 		// creating scene
 				var scene = new THREE.Scene();
@@ -40,12 +40,14 @@ canvas {
 					camera.updateProjectionMatrix();
 				})
 
+				var raycaster = new THREE.Raycaster();
+				var mouse = new THREE.Vector2();
+
 				// generating new mesh object
 				var geometry = new THREE.BoxGeometry(10, 10, 10);
-				var material = new THREE.MeshLambertMaterial({color: 0xFFCC00});
+				var material = new THREE.PointsMaterial({color: 0xFFCC00, size: 0.25});
 				var mesh = new THREE.Points(geometry, material);
 
-				
 
 				// adding mesh to scene
 				scene.add(mesh);
@@ -65,7 +67,32 @@ canvas {
 					renderer.render(scene, camera);
 				}
 
+
+				function onMouseMove(event){
+					event.preventDefault();
+					
+					mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+					mouse.y = (event.clientY / window.innerHeight) * 2 + 1;
+
+					raycaster.setFromCamera(mouse, camera);
+
+					var intersects = raycaster.intersectObjects(scene.children, true)
+					for (var i = 0; i < intersects.length; i++) {
+						intersects[i].object.material.color.set(0xff0000)
+						// this is the timeline for animation events
+						this.tl = new TimelineMax();
+						this.tl.to(intersects[i].object.scale, 1, {x: 2, ease: Expo.easeOut})
+						this.tq.to(intersects[i].object.scale, 0.5, {x: .5, ease: Expo.easeOut})
+						this.tq.to(intersects[i].object.position, 0.5, {x: 1, ease: Expo.easeOut})
+						this.tq.to(intersects[i].object.rotation, 0.5, {x: Math.PI*0.5, ease: Expo.easeOut}, "=-1.5")
+					}
+				}
+
 				render();
+
+
+				window.addEventListener('mousemove', onMouseMove);
+
 
 		</script>
 				<h1> Parker Grosjean </h1>
