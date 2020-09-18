@@ -78,8 +78,6 @@ canvas {
 
 					var intersects = raycaster.intersectObjects(scene.children, true)
 					for (var i = 0; i < intersects.length; i++) {
-						intersects[i].object.material.color.set(0xff0000)
-						// this is the timeline for animation events
 						this.tl = new TimelineMax();
 						this.tl.to(intersects[i].object.scale, 1, {x: 2, ease: Expo.easeOut})
 						this.tq.to(intersects[i].object.scale, 0.5, {x: .5, ease: Expo.easeOut})
@@ -91,7 +89,7 @@ canvas {
 				render();
 
 
-				window.addEventListener('click', onMouseMove);
+				window.addEventListener('mousemove', onMouseMove);
 
 
 		</script>
