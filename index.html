@@ -26,7 +26,7 @@ canvas {
 		// creating scene
 				var scene = new THREE.Scene();
 				var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1,	1000);
-				camera.position.z = 5;
+				camera.position.z = 20;
 
 				var renderer = new THREE.WebGLRenderer({antialias: true});
 				renderer.setClearColor("#283428");
@@ -41,9 +41,11 @@ canvas {
 				})
 
 				// generating new mesh object
-				var geometry = new THREE.SphereGeometry(1, 10, 10);
+				var geometry = new THREE.BoxGeometry(10, 10, 10);
 				var material = new THREE.MeshLambertMaterial({color: 0xFFCC00});
-				var mesh = new THREE.Mesh(geometry, material);
+				var mesh = new THREE.Points(geometry, material);
+
+				
 
 				// adding mesh to scene
 				scene.add(mesh);
@@ -54,7 +56,16 @@ canvas {
 				scene.add(light);
 
 				// rendering the scene
-				renderer.render(scene, camera);
+				var render = function() {
+					requestAnimationFrame(render);
+
+					mesh.rotation.x += 0.01;
+					mesh.rotation.y += 0.01;
+
+					renderer.render(scene, camera);
+				}
+
+				render();
 
 		</script>
 				<h1> Parker Grosjean </h1>
