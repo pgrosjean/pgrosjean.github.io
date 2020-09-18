@@ -45,8 +45,8 @@ canvas {
 
 				// generating new mesh object
 				var geometry = new THREE.BoxGeometry(10, 10, 10);
-				var material = new THREE.PointsMaterial({color: 0xFFCC00, size: 0.25});
-				var mesh = new THREE.Points(geometry, material);
+				var material = new THREE.MeshLambertMaterial({color: 0xFFCC00, size: 0.25});
+				var mesh = new THREE.Mesh(geometry, material);
 
 
 				// adding mesh to scene
