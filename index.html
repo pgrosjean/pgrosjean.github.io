@@ -16,7 +16,7 @@ h1 {
 	left: 2em;
 	font-family: 'Montserrat';
 	width: auto;
-	color: #1e1f1e;
+	color: black;
 	line-height: .8em;
 	border: 5px solid black; border-radius: 5px;
 	padding: .2em;
@@ -64,8 +64,8 @@ h1 {
 				var render = function() {
 					requestAnimationFrame(render);
 
-					mesh.rotation.x += 0.01;
-					mesh.rotation.y += 0.01;
+					mesh.rotation.x += (0.01 + Math.sin();
+					mesh.rotation.y += (0.01 + Math.cos();
 
 					renderer.render(scene, camera);
 				}
