@@ -1,101 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-<style>
-body {
-	margin: 0;
-	height: 100vh;
-}
-canvas {
-	display: block;
-}
-h1 {
-	position: absolute;
-	top: 1.5em;
-	left: 2em;
-	background-color: #F4D025;
-	font-family: 'Montserrat';
-	font-size: 40px;
-	width: auto;
-	color: black;
-	line-height: .8em;
-	border: 5px solid black; border-radius: 5px;
-	padding: .2em;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parker's Personal Website</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat", rel="stylesheet" />
 </head>
-	<body>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
-		<script>
-		// creating scene
-				var scene = new THREE.Scene();
-				var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1,	1000);
-				camera.position.z = 50;
+<body>
+    <main>
+        <section class="landing">
+            <nav>
+                <h1 id="logo"> Parker Grosjean </h1>
+                <ul class="nav-links">
+                    <li> Home </li>
+                    <li> Contact </li>
+                    <li> About </li>
+                </ul>
+            </nav>
+            <h2 class="big-text"> About Me </h2>
+            <img class="head-shot" src="./headshot.jpg" alt="Parker Grosjean">
+        </section>
+    </main>
 
-				var renderer = new THREE.WebGLRenderer({antialias: true});
-				renderer.setClearColor("#283428");
-				renderer.setSize(window.innerWidth,window.innerHeight);
-				document.body.appendChild(renderer.domElement);
+    <div class="intro">
+        <div class="intro-text">
+            <h1 class="hide">
+                <span class="text"> Hello, </span>
+            </h1>
+            <h1 class="hide">
+                <span class="text"> My name Parker </span>
+            </h1>
+            <h1 class="hide">
+                <span class="text"> Welcome to my interactive resume. </span>
+            </h1>
+        </div>
+    </div>
 
-				// creating event listerner for window resizing
-				window.addEventListener('resize', () => {
-					rendrer.setSize(window.innerWidth, window.innerHeight);
-					camera.aspect = window.innerWidth / window.innerHeight;
-					camera.updateProjectionMatrix();
-				})
+    <div class="slider"></div>
 
-				var raycaster = new THREE.Raycaster();
-				var mouse = new THREE.Vector2();
-
-				// generating new mesh object
-				var geometry = new THREE.TorusKnotGeometry(10, 3, 200, 32);
-				var material = new THREE.PointsMaterial({color: 0xFFCC00, size: 0.1});
-				var mesh = new THREE.Points(geometry, material);
-
-				// adding mesh to scene
-				mesh.position.set(5, 0, 0)
-				scene.add(mesh);
-
-				// adding lights
-				var light = new THREE.PointLight( 0xFFFFFF, 1, 500);
-				light.position.set(10, 0, 25);
-				scene.add(light);
-
-				// rendering the scene
-				var render = function() {
-					requestAnimationFrame(render);
-
-					mesh.rotation.x += 0.01;
-					mesh.rotation.y += 0.01;
-
-					renderer.render(scene, camera);
-				}
-
-
-				function onMouseMove(event){
-					event.preventDefault();
-					
-					mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-					mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-
-					raycaster.setFromCamera(mouse, camera);
-
-					var intersects = raycaster.intersectObjects(scene.children, true)
-
-					for (var i = 0; i < intersects.length; i++) {
-						this.tl = new TimelineMax();
-						this.tl.to(intersects[i].object.scale, 2, {x: 1.5, y: 1.5, z: 1.5, ease: Expo.easeOut});
-					}
-				}
-
-				render();
-
-				window.addEventListener('mousemove', onMouseMove);
-
-
-		</script>
-		<h1> Parker Grosjean </h1>
-		</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" 
+    integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" 
+    crossorigin="anonymous"
+    ></script>
+    <script src="./intro.js"></script>
+    <script src="./interact.js"></script>
+</body>
 </html>
